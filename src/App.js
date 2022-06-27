@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Data from "./data/data.js";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form action='http://localhost:80/ico/index.php' method="post">
+        <div className='form'>
+        <h1>IČO</h1>
+        <input name="ico" onKeyPress={(event) => {
+          if (!/[0-9]/.test(event.key)) {
+            event.preventDefault();
+            alert("Zadávat lze pouze čísla")
+          }
+        }}
+    />
+        <h1>Název firmy</h1>
+        <input name="nazev" type="text"></input>
+        <br></br>
+        <button type="submit" name='submit' value="odeslat">Odeslat</button>
+        <br></br>
+        </div>
+        <Data/>
+      </form>
     </div>
   );
 }
